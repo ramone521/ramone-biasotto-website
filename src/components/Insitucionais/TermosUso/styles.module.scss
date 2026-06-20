@@ -1,0 +1,110 @@
+@use '../../../sass/custom-mixins' as *;
+
+.container {
+  background: #fff;
+  border-bottom: 1px solid #DEDEDE;
+
+  @include responsivePaddingAdapt(
+    $mobile: 120px 24px 40px 24px,
+    $desktop: 132px 90px 90px 90px,
+    $wide: 132px 200px 91px 200px
+  );
+}
+
+.atualizacaoHeaderPolitica{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+
+  p,span{
+    font-family: $fontPrimary;
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  }
+}
+
+.title {
+  font-family: $fontSecundary;
+  font-size: 48px;
+  font-weight: 600;
+  color: #383C45;
+  text-align: center;
+  margin: 0 0 48px 0;
+
+  @media (max-width: 1023px) {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-family: $fontSecundary;
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+
+  @media (max-width: 1023px) {
+    font-size: 24px;
+  }
+}
+
+.text {
+  font-family: $fontPrimary;
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+
+  @media (max-width: 1023px) {
+    font-size: 16px;
+  }
+}
+
+.list {
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.listItem {
+  font-family: $fontPrimary;
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+
+  @media (max-width: 1023px) {
+    font-size: 16px;
+  }
+
+  .numeral {
+    min-width: 32px;
+    flex-shrink: 0;
+  }
+}

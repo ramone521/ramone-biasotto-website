@@ -1,0 +1,402 @@
+@use "../../sass/custom-mixins.scss" as *;
+
+.containerHeader {
+    padding: 20px 120px;
+    background-color: transparent;
+    border-radius: 0;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 99999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: background-color 0.35s ease,
+        padding 0.35s ease,
+        border-radius 0.35s ease,
+        box-shadow 0.35s ease;
+
+    @media (min-width: 1024px) and (max-width: 1200px) {
+        padding: 20px 50px;
+    }
+
+    /* Estado quando rolado: ganha fundo claro, padding menor e bordas arredondadas */
+    &.scrolled {
+        background-color: #F5F5F5;
+        border-radius: 0 0 32px 32px;
+        padding: 14px 120px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+        @media (min-width: 1024px) and (max-width: 1200px) {
+            padding: 14px 50px;
+        }
+
+        .containerContentHeader {
+            .containerLogo h1 {
+                color: rgba(59, 62, 67, 0.70);
+
+                &::before {
+                    background-color: rgba(59, 62, 67, 0.70);
+                }
+            }
+
+            .containerLinks a {
+                color: rgba(59, 62, 67, 0.70);
+
+                &:hover {
+                    color: #B69B72;
+                    text-decoration: underline;
+                }
+            }
+
+            .containerLogo svg path {
+                fill: #3B3E43;
+                transition: fill 0.35s ease;
+            }
+
+            .hamburgerBtn {
+                color: #3B3E43;
+            }
+
+            /* Botão WhatsApp ganha o fundo dourado quando rolou */
+            .contactBtn {
+                background: #B69B72;
+                color: #FFFFFF;
+            }
+        }
+    }
+
+    /* Variante sólida para páginas sem hero (política, termos) */
+    &.solid {
+        background-color: #F5F5F5;
+        border-radius: 0 0 32px 32px;
+        padding: 14px 120px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+        @media (min-width: 1024px) and (max-width: 1200px) {
+            padding: 20px 50px;
+        }
+
+        .containerContentHeader {
+            .containerLogo h1 {
+                color: rgba(59, 62, 67, 0.70);
+
+                &::before {
+                    background-color: rgba(59, 62, 67, 0.70);
+                }
+            }
+
+            .containerLinks a {
+                color: rgba(59, 62, 67, 0.70);
+
+                &:hover {
+                    color: #B69B72;
+                    text-decoration: underline;
+                }
+            }
+
+            .containerLogo svg path {
+                fill: #3B3E43;
+                transition: fill 0.35s ease;
+            }
+
+            .hamburgerBtn {
+                color: #3B3E43;
+            }
+
+            .contactBtn {
+                background: #B69B72;
+                color: #FFFFFF;
+            }
+        }
+    }
+
+    .containerContentHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 100%;
+
+        .containerLogo {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+            text-decoration: none;
+
+            /* Logo SVG no estado transparente — claro */
+            svg path {
+                fill: #FFFFFF;
+                transition: fill 0.35s ease;
+            }
+
+            h1 {
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.85);
+                font-family: $fontPrimary;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                transition: color 0.35s ease;
+
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    width: 1px;
+                    height: 1.2rem;
+                    background-color: rgba(255, 255, 255, 0.85);
+                    vertical-align: middle;
+                    margin-right: 10px;
+                    transition: background-color 0.35s ease;
+                }
+            }
+        }
+
+        .containerLinks {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+
+            a {
+                color: rgba(255, 255, 255, 0.85);
+                text-decoration: none;
+                font-family: $fontPrimary;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                transition: color 0.35s ease;
+
+                &:hover {
+                    color: #B69B72;
+                }
+            }
+        }
+
+        /* ===== Botão hamburguer (mobile only) ===== */
+        .hamburgerBtn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 22px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+            color: #FFFFFF;
+
+
+
+        }
+
+        .contactBtn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: transparent;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: background 0.35s ease, color 0.35s ease, opacity 0.2s ease, transform 0.2s ease;
+            flex-shrink: 0;
+
+            &:hover {
+                opacity: 0.85;
+                transform: scale(1.03);
+            }
+
+            svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+}
+
+/* ===== Overlay escuro ===== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 99999999;
+
+    &.overlayActive {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* ===== Drawer lateral (menu mobile) ===== */
+.mobileDrawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: min(320px, 85vw);
+    background: #F5F5F5;
+    z-index: 99999999;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+
+    &.drawerOpen {
+        transform: translateX(0);
+    }
+
+    .drawerHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border-bottom: 1px solid rgba(59, 62, 67, 0.10);
+
+        .drawerLogo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+
+            svg path {
+                fill: #3B3E43;
+            }
+
+            span {
+                color: rgba(59, 62, 67, 0.80);
+                font-family: $fontPrimary;
+                font-size: 13px;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        .closeBtn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: rgba(59, 62, 67, 0.08);
+            }
+        }
+    }
+
+    .drawerLinks {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 0;
+
+        a {
+            color: rgba(59, 62, 67, 0.85);
+            text-decoration: none;
+            font-family: $fontPrimary;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 14px 24px;
+            transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+            border-left: 3px solid transparent;
+
+            &:hover,
+            &:active {
+                background: rgba(182, 155, 114, 0.08);
+                color: #B69B72;
+                border-left-color: #B69B72;
+                padding-left: 28px;
+            }
+        }
+    }
+}
+
+/* ===== Mobile breakpoint ===== */
+@media (max-width: 1024px) {
+    .containerHeader {
+        padding: 16px 20px;
+
+        &.scrolled {
+            padding: 12px 20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        &.solid {
+            padding: 16px 20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .containerContentHeader {
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+            .containerLinks {
+                display: none;
+            }
+
+            .hamburgerBtn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .contactBtn {
+                display: flex;
+                flex-shrink: 0;
+            }
+
+            .containerLogo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: auto;
+
+                h1 {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+    .containerHeader {
+        padding: 14px 16px;
+
+        &.scrolled {
+            padding: 10px 16px;
+        }
+
+        &.solid {
+            padding: 14px 16px;
+        }
+
+        .containerContentHeader {
+            .contactBtn {
+                width: 40px;
+                height: 40px;
+
+                svg {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+        }
+    }
+}

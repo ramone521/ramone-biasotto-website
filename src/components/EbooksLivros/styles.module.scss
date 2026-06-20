@@ -1,0 +1,338 @@
+@use "../../sass/custom-mixins.scss" as *;
+
+.containerEbooks {
+    background: #383C45;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: clamp(32px, 4vw, 64px);
+    overflow: hidden;
+
+    @include responsivePadding;
+
+    /* ===== ANIMAÇÃO HEADER ===== */
+    .containerHeaderEbooks {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p {
+            color: #B69B72;
+            font-family: $fontPrimary;
+            font-size: clamp(12px, 0.7vw, 12px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: clamp(2.4px, 0.25vw, 3.6px);
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        h1 {
+            color: #B69B72;
+            font-family: $fontSecundary;
+            font-size: clamp(32px, 3.2vw, 48px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1.1;
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    .containerCardsLivros {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px;
+        
+        width: 100%;
+
+        @media(max-width:1024px){
+            max-width: 500px;
+        }
+
+        .containerCard {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: clamp(24px, 3vw, 45px);
+            align-items: center;
+            border-radius: 8px;
+            border: 2px solid #909092;
+            background: #FFF;
+            box-shadow: 9px 12px 25.8px 0 rgba(255, 255, 255, 0.20);
+            overflow: hidden;
+            width: 100%;
+
+            /* ===== ANIMAÇÃO DESKTOP — cards alternados (esquerda/direita) ===== */
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+            /* Cards reversed vêm da direita */
+            &.reversed {
+                transform: translateX(60px);
+
+                grid-template-columns: 1fr auto;
+
+                .imgWrapper {
+                    order: 2;
+                }
+
+                .containerContentCard {
+                    order: 1;
+                    padding: clamp(20px, 2.5vw, 32px) 0 clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 48px);
+                }
+            }
+
+            &.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .imgWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                flex-shrink: 0;
+            }
+
+            .imgLivro {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .containerContentCard {
+                padding: clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 48px) clamp(20px, 2.5vw, 32px) 0;
+                display: flex;
+                flex-direction: column;
+                gap: clamp(12px, 1.2vw, 16px);
+                align-items: flex-start;
+                justify-content: center;
+                min-width: 0;
+
+                .txtTag {
+                    border-radius: 1000px;
+                    background: #F7F4F0;
+                    padding: 4px 12px;
+                    color: #B69B72;
+                    font-family: $fontPrimary;
+                    font-size: clamp(10px, 0.78vw, 12px);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    text-transform: uppercase;
+                }
+
+                .headerBooks {
+                    display: flex;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    gap: 4px;
+                    width: 100%;
+
+                    .titleBook {
+                        color: #383C45;
+                        font-family: $fontPrimary;
+                        font-size: clamp(22px, 2.2vw, 32px);
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 1.2;
+                        margin: 0;
+                    }
+
+                    .descricaoP {
+                        color: #B69B72;
+                        font-family: $fontPrimary;
+                        font-size: clamp(10px, 0.78vw, 12px);
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 1.3;
+                        text-transform: uppercase;
+                        margin: 0;
+                    }
+                }
+
+                .descricaoG {
+                    color: #666;
+                    text-align: justify;
+                    font-family: $fontPrimary;
+                    font-size: clamp(12px, 0.95vw, 14px);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    margin: 0;
+                    width: 100%;
+                    overflow: hidden;
+                    transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+                }
+
+                .actionsRow {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                }
+
+                .ctaBooks {
+                    border-radius: 6px;
+                    background: #383C45;
+                    display: flex;
+                    padding: 8px 16px;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    gap: 5px;
+                    border: none;
+                    color: #F7F7F7;
+                    font-family: $fontPrimary;
+                    font-size: clamp(12px, 0.95vw, 14px);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    text-decoration: none;
+                    transition: opacity 0.2s ease, transform 0.2s ease;
+
+                    &:hover {
+                        opacity: 0.9;
+                        transform: scale(1.03);
+                    }
+
+                    &::before {
+                        content: '';
+                        display: block;
+                        background-repeat: no-repeat;
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 11 11' fill='none'%3E%3Cpath d='M3.7 9.25393C4.65429 9.74346 5.75204 9.87605 6.79544 9.62782C7.83884 9.37958 8.75928 8.76685 9.39088 7.90002C10.0225 7.03319 10.3237 5.96928 10.2403 4.90001C10.1569 3.83074 9.69429 2.82641 8.9359 2.06803C8.17752 1.30964 7.17319 0.847055 6.10392 0.763638C5.03465 0.68022 3.97074 0.981453 3.10391 1.61305C2.23708 2.24465 1.62435 3.16508 1.37611 4.20849C1.12788 5.25189 1.26047 6.34964 1.75 7.30393L0.75 10.2539L3.7 9.25393Z' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+                        width: 11px;
+                        height: 11px;
+                    }
+                }
+
+                .verMaisBtn {
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    color: #B69B72;
+                    font-family: $fontPrimary;
+                    font-size: clamp(12px, 0.95vw, 14px);
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    padding: 8px 4px;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: #383C45;
+                    }
+                }
+            }
+        }
+    }
+
+    /* ===== Breakpoints ===== */
+
+    /* Faixa crítica (até 1160px) */
+    @media (max-width: 1160px) {
+        .containerCardsLivros .containerCard {
+            gap: 24px;
+
+            &.reversed .containerContentCard {
+                padding: 24px 0 24px 28px;
+            }
+
+            .containerContentCard {
+                padding: 24px 28px 24px 0;
+                gap: 12px;
+
+                .headerBooks .titleBook {
+                    font-size: 22px;
+                }
+
+                .descricaoG {
+                    font-size: 12.5px;
+                }
+            }
+        }
+    }
+
+    /* ===== MOBILE (até 1024px) ===== */
+    @media (max-width: 1024px) {
+        .containerCardsLivros .containerCard {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 0;
+
+            /* Sobrescreve animação lateral do desktop com fade-up vertical */
+            transform: translateY(40px);
+
+            &.reversed {
+                transform: translateY(40px);
+                grid-template-columns: 1fr;
+
+                .imgWrapper {
+                    order: 0;
+                }
+
+                .containerContentCard {
+                    order: 1;
+                    padding: 16px 24px;
+                }
+            }
+
+            &.visible {
+                transform: translateY(0);
+            }
+
+            .imgWrapper {
+                aspect-ratio: 0;
+            }
+
+            .imgLivro {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .containerContentCard {
+                padding: 16px 24px;
+
+            }
+        }
+    }
+
+    /* Respeita preferência por menos animações */
+    @media (prefers-reduced-motion: reduce) {
+        .containerHeaderEbooks,
+        .containerCardsLivros .containerCard {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+}

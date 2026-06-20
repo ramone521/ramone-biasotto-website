@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+$fontPrimary: "DM Sans", sans-serif;
+$fontSecundary:  "Cormorant Garamond", "DM Sans", sans-serif;
+
+@mixin responsivePadding {
+  @media (max-width: 1023px) {
+    padding: 40px 24px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1549px) {
+    padding: 90px;
+  }
+
+  @media (min-width: 1550px) {
+    padding: 90px 200px;
+  }
+}
+
+@mixin responsivePaddingAdapt($mobile: null, $desktop: null, $wide: null) {
+  // Mobile: 0 até 1023px
+  @if $mobile != null {
+    @media (max-width: 1023px) {
+      padding: $mobile;
+    }
+  }
+
+  // Desktop: 1024px até 1549px
+  @if $desktop != null {
+    @media (min-width: 1024px) and (max-width: 1549px) {
+      padding: $desktop;
+    }
+  }
+
+  // Wide: 1550px em diante
+  @if $wide != null {
+    @media (min-width: 1550px) {
+      padding: $wide;
+    }
+  }
+}

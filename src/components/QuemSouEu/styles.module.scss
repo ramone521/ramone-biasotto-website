@@ -1,0 +1,497 @@
+@use "../../sass/custom-mixins.scss" as *;
+
+.containerQuemsou {
+    background: #F7F7F7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(20px, 4vw, 60px);
+    overflow: hidden;
+    
+    @include responsivePadding;
+
+    /* ===== ANIMAÇÃO DESKTOP (acima de 1024px) ===== */
+    /* Texto vem da esquerda, imagem vem da direita */
+
+    .contentQuemsou {
+        max-width: 680px;
+        width: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
+
+        /* Estado inicial — vem da esquerda */
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+
+        .containerHeaderQuem {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            align-self: stretch;
+
+            p {
+                color: #B69B72;
+                font-family: $fontPrimary;
+                font-size: clamp(10px, 0.7vw, 12px);
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                letter-spacing: clamp(2.4px, 0.25vw, 3.6px);
+                text-transform: uppercase;
+                margin: 0;
+            }
+
+            h1 {
+                color: #383C45;
+                font-family: $fontSecundary;
+                font-size: clamp(28px, 3.2vw, 48px);
+                font-style: normal;
+                font-weight: 700;
+                line-height: 1.1;
+                text-transform: capitalize;
+                margin: 0;
+                margin-bottom: 6px !important;
+            }
+        }
+
+        >p {
+            color: rgba(33, 33, 33, 0.70);
+            text-align: justify;
+            font-family: $fontPrimary;
+            font-size: clamp(13px, 1.1vw, 18px);
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .containerDife {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: clamp(8px, 1vw, 20px);
+            flex-wrap: nowrap;
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                padding: clamp(10px, 1.2vw, 24px);
+                border: 1px solid #DEDEDE;
+                background: #FFF;
+                box-shadow: 0 6px 10.7px 0 rgba(56, 60, 69, 0.12);
+                width: clamp(95px, 10vw, 155px);
+                height: clamp(100px, 9vw, 129px);
+                flex: 1 1 0;
+                min-width: 0;
+                box-sizing: border-box;
+
+                h1 {
+                    color: #B69B72;
+                    font-family: $fontSecundary;
+                    font-size: clamp(16px, 1.6vw, 30px);
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 1.1;
+                    margin: 0;
+                    text-align: center;
+                    word-break: break-word;
+
+                    &.smallTitle {
+                        font-size: clamp(13px, 1.25vw, 21px);
+                    }
+                }
+
+                p {
+                    color: #666;
+                    text-align: center;
+                    font-family: $fontPrimary;
+                    font-size: clamp(9px, 0.75vw, 14px);
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    margin: 0;
+                }
+            }
+        }
+
+        /* Disparo: header é o gatilho para o lado do texto inteiro entrar */
+        .containerHeaderQuem.visible {
+            ~ * {
+                /* nada — só usado como trigger */
+            }
+        }
+    }
+
+    /* Quando o header entra na viewport, todo o lado de texto desliza */
+    .contentQuemsou:has(.containerHeaderQuem.visible) {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .containerImg {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+
+        /* Estado inicial — vem da direita */
+        opacity: 0;
+        transform: translateX(60px);
+        transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+                    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+
+        &.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -8%;
+            left: -22%;
+            width: 115%;
+            aspect-ratio: 483 / 353;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-image: url("data:image/svg+xml,%3Csvg width='483' height='353' viewBox='0 0 483 353' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M332.777 63.25C380.959 79.7453 447.462 86.6487 471.452 110.411C495.34 134.173 476.715 174.793 445.033 202.189C413.249 229.584 368.306 243.754 329.437 270.35C290.669 296.873 257.873 335.75 212.829 348.031C167.684 360.239 110.189 345.851 67.6761 320.199C25.1628 294.475 -2.36966 257.488 0.1609 222.971C2.79268 188.455 35.4875 156.409 50.4683 119.276C65.4492 82.1433 62.615 39.8513 88.7303 18.1967C114.947 -3.45801 170.012 -4.40267 212.525 8.096C254.937 20.6673 284.697 46.7547 332.777 63.25Z' fill='%23383C45'/%3E%3C/svg%3E%0A");
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -16%;
+            right: -22%;
+            width: 122%;
+            aspect-ratio: 512 / 394;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-image: url("data:image/svg+xml,%3Csvg width='512' height='394' viewBox='0 0 512 394' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M174.15 317.093C124.714 304.86 57.8625 303.779 31.8931 282.198C6.02457 260.609 21.0383 218.519 50.2126 188.467C79.4878 158.406 123.024 140.372 159.428 110.49C195.737 80.6887 225.02 39.1016 268.822 22.9419C312.731 6.84569 371.261 16.168 415.848 38.0164C460.441 59.9372 491.093 94.3842 491.58 128.99C491.967 163.605 462.189 198.378 450.502 236.675C438.814 274.972 445.324 316.857 421.195 340.705C396.965 364.562 342.192 370.302 298.752 361.557C255.405 352.729 223.485 329.335 174.15 317.093Z' fill='%23383C45'/%3E%3C/svg%3E%0A");
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: clamp(240px, 26vw, 420px);
+            height: auto;
+            border-radius: clamp(36px, 4.5vw, 67px);
+            box-shadow: 6px 8px 16.8px 0 rgba(247, 247, 247, 0.38);
+            display: block;
+        }
+    }
+
+    /* Resetar transform-origin no desktop para o efeito lateral */
+    @media (min-width: 1025px) {
+        .contentQuemsou .containerHeaderQuem,
+        .contentQuemsou > p,
+        .contentQuemsou .containerDife {
+            /* Desktop: anima junto com o pai .contentQuemsou, não individualmente */
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        /* Quando o header entra, o bloco inteiro do texto desliza da esquerda */
+        .contentQuemsou:has(.containerHeaderQuem.visible) {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* ===== Breakpoints ===== */
+
+    @media (max-width: 1599px) {
+        .contentQuemsou {
+            max-width: 600px;
+        }
+    }
+
+    @media (max-width: 1279px) {
+        gap: 24px;
+
+        .contentQuemsou {
+            max-width: 520px;
+        }
+
+        .containerImg img {
+            max-width: 320px;
+        }
+    }
+
+    @media (max-width: 1160px) {
+        gap: 18px;
+
+        .contentQuemsou {
+            max-width: 460px;
+
+            .containerHeaderQuem {
+                h1 {
+                    font-size: 30px;
+                }
+
+                p {
+                    font-size: 11px;
+                    letter-spacing: 2.8px;
+                }
+            }
+
+            >p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .containerDife {
+                gap: 8px;
+
+                .card {
+                    width: auto;
+                    height: 100px;
+                    padding: 10px;
+
+                    h1 {
+                        font-size: 17px;
+
+                        &.smallTitle {
+                            font-size: 13.5px;
+                        }
+                    }
+
+                    p {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+
+        .containerImg img {
+            max-width: 270px;
+            border-radius: 42px;
+        }
+    }
+
+    /* ===== MOBILE (até 1024px) ===== */
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 70px !important;
+
+        /* Reseta animação lateral do desktop */
+        .contentQuemsou {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+
+        /* ===== ANIMAÇÃO MOBILE — fade-up individual por elemento ===== */
+
+        .animateItem {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+            &.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cards entram em cascata quando o container fica visível */
+        .containerDife {
+            .card {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            &.visible .card {
+                opacity: 1;
+                transform: translateY(0);
+
+                &:nth-child(1) { transition-delay: 0s; }
+                &:nth-child(2) { transition-delay: 0.1s; }
+                &:nth-child(3) { transition-delay: 0.2s; }
+                &:nth-child(4) { transition-delay: 0.3s; }
+            }
+        }
+
+        /* Imagem com fade-up + leve scale ao entrar */
+        .containerImg {
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+            &.visible {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===== Layout mobile ===== */
+
+        .contentQuemsou {
+            max-width: 100%;
+            width: 100%;
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .containerHeaderQuem {
+                align-items: center;
+                text-align: center;
+
+                h1 {
+                    font-size: clamp(28px, 6vw, 36px);
+                    text-align: center;
+                }
+
+                p {
+                    text-align: center;
+                }
+            }
+
+            >p {
+                font-size: clamp(13px, 3.5vw, 15px);
+                text-align: justify;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            .containerDife {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+
+                .card {
+                    width: calc(50% - 6px);
+                    height: auto;
+                    min-height: 110px;
+                    padding: 16px 12px;
+                    flex: 0 0 calc(50% - 6px);
+
+                    h1 {
+                        font-size: 22px;
+
+                        &.smallTitle {
+                            font-size: 17px;
+                        }
+                    }
+
+                    p {
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+
+        .containerImg {
+            order: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 32px 0;
+            overflow: visible;
+
+            img {
+                max-width: min(320px, 70vw);
+                border-radius: 42px;
+                position: relative;
+                z-index: 2;
+            }
+
+            &::before {
+                width: min(360px, 78vw);
+                height: auto;
+                aspect-ratio: 483 / 353;
+                top: -2%;
+                left: 53%;
+                transform: translateX(-65%);
+            }
+
+            &::after {
+                width: min(380px, 85vw);
+                height: auto;
+                aspect-ratio: 512 / 394;
+                bottom: -7%;
+                right: 56%;
+                transform: translateX(65%);
+                left: auto;
+
+                @media(min-width: 550px) {
+                    bottom: -9%;
+                    right: 50%;
+                }
+            }
+        }
+    }
+
+    /* Mobile pequeno (até 480px) */
+    @media (max-width: 480px) {
+        gap: 36px;
+        padding-bottom: 70px !important;
+
+        .contentQuemsou {
+            .containerHeaderQuem h1 {
+                font-size: 32px;
+            }
+
+            >p {
+                font-size: 14px;
+            }
+
+            .containerDife {
+                gap: 10px;
+
+                .card {
+                    width: calc(50% - 5px);
+                    flex: 0 0 calc(50% - 5px);
+                    min-height: 100px;
+                    padding: 14px 10px;
+
+                    h1 {
+                        font-size: 24px;
+
+                        &.smallTitle {
+                            font-size: 24px;
+                        }
+                    }
+
+                    p {
+                        font-size: 12.5px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Respeita preferência por menos animações */
+    @media (prefers-reduced-motion: reduce) {
+        .contentQuemsou,
+        .containerImg,
+        .animateItem,
+        .containerDife .card {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+}

@@ -1,0 +1,371 @@
+@use "../../sass/custom-mixins.scss" as *;
+
+.containerServicos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(32px, 4vw, 64px);
+    background: #F7F7F7;
+    box-shadow: 0 4px 10.7px 0 rgba(56, 60, 69, 0.12), 0 -4px 10.7px 0 rgba(56, 60, 69, 0.12);
+    position: relative;
+    overflow: hidden;
+
+    @include responsivePadding;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 35vw;
+        height: 100%;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("data:image/svg+xml,%3Csvg width='510' height='711' viewBox='0 0 510 711' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_57_235)'%3E%3Cpath d='M129.859 -74.2083L116.002 -46.2354C102.368 -18.5106 74.6549 37.4351 72.4139 78.5548C69.8984 119.833 92.6843 146.623 123.652 168.57C154.62 190.516 193.873 207.799 204.257 241.63C214.64 275.461 196.259 326.019 179.197 375.695C162.136 425.371 146.498 474.345 171.977 499.461C197.456 524.577 264.154 526.014 313.51 537.344C362.592 548.833 394.709 570.235 408.112 602.323C421.789 634.252 417.13 676.888 425.592 711.828C434.329 746.609 456.017 774.033 467.084 787.497L477.928 801.209L132.118 1000.86L123.47 985.883C114.873 970.993 97.5764 941.034 80.3313 911.164C63.0861 881.295 45.7892 851.336 28.5441 821.466C11.299 791.597 -5.99786 761.638 -23.243 731.768C-40.4881 701.899 -57.785 671.94 -75.0301 642.07C-92.2752 612.201 -109.572 582.242 -126.817 552.373C-144.062 522.503 -161.359 492.544 -178.604 462.675C-195.849 432.805 -213.146 402.846 -230.391 372.977C-247.637 343.107 -264.933 313.148 -282.179 283.279C-299.424 253.409 -316.721 223.45 -325.317 208.56L-333.966 193.581L129.859 -74.2083Z' fill='%23383C45'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_57_235'%3E%3Crect width='854.839' height='489.536' fill='white' transform='translate(82.4789 -71.3044) rotate(60)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+        transition: all 0.3s ease;
+
+        @media(max-width: 1024px){
+            display: none;
+
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 35vw;
+        height: 100%;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right top;
+        background-image: url("data:image/svg+xml,%3Csvg width='478' height='658' viewBox='0 0 478 658' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_57_241)'%3E%3Cpath d='M747.399 782.76L742.9 767.247C738.298 751.581 729.3 720.557 697.345 704.793C665.287 689.099 610.583 688.904 584.367 669.269C558.151 649.635 560.836 610.73 552.349 579.137C543.965 547.475 524.719 523.362 506.189 498.543C487.762 473.655 470.155 448.437 463.001 415.945C455.744 383.523 459.044 344.203 449.123 313.578C439.099 283.022 416.164 261.398 390.46 241.418C364.757 221.438 336.697 203.27 321.959 175.894C307.221 148.517 306.012 112.239 287.072 87.6965C268.030 63.2233 231.362 50.8622 201.559 33.6471C171.859 16.3629 149.128 -5.39912 123.835 -25.6557C98.541 -45.9123 70.6865 -64.2181 56.7581 -73.5937L42.8308 -82.7466L319.532 -269.384L328.13 -256.637C336.832 -243.736 354.028 -218.241 371.329 -192.592C388.629 -166.944 405.825 -141.449 423.125 -115.801C440.425 -90.1526 457.621 -64.6579 474.922 -39.0095C492.222 -13.3612 509.418 12.1336 526.718 37.7819C544.018 63.4303 561.214 88.9251 578.515 114.573C595.815 140.222 613.011 165.717 630.311 191.365C647.611 217.013 664.807 242.508 682.108 268.156C699.408 293.805 716.604 319.299 733.904 344.948C751.204 370.596 768.4 396.091 785.701 421.739C803.001 447.388 820.197 472.882 837.497 498.531C854.797 524.179 871.993 549.674 889.294 575.322C906.594 600.971 923.79 626.465 932.492 639.366L941.090 652.114L747.399 782.76Z' fill='%23383C45'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_57_241'%3E%3Crect width='352.717' height='889.052' fill='white' transform='translate(0 -79.6292) rotate(-34)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+        transition: all 0.3s ease;
+
+          @media(max-width: 1024px){
+            display: none;
+
+        }
+    }
+
+    /* ===== ANIMAÇÃO HEADER ===== */
+    .containerHeadeServicos {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p {
+            color: #B69B72;
+            font-family: $fontPrimary;
+            font-size: clamp(10px, 0.7vw, 12px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: clamp(2.4px, 0.25vw, 3.6px);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: #383C45;
+            font-family: $fontSecundary;
+            font-size: clamp(32px, 3.2vw, 48px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1.1;
+            margin: 0;
+        }
+    }
+
+    .containerCards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        align-items: stretch;
+        gap: clamp(12px, 1.5vw, 24px);
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1200px;
+
+        /* ===== ANIMAÇÃO CARDS — fade-up + scale ===== */
+        .cardServicos {
+            padding: clamp(20px, 2.5vw, 40px) clamp(16px, 2vw, 32px);
+            display: flex;
+            gap: clamp(8px, 0.8vw, 12px);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px solid #DEDEDE;
+            background: #FFF;
+            box-shadow: 0 6px 10.7px 0 rgba(56, 60, 69, 0.12);
+            min-width: 0;
+
+            /* Estado inicial: invisível, deslocado para baixo e levemente menor */
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+            &.visible {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            img {
+                padding: clamp(12px, 1.2vw, 16px);
+                border-radius: 1000px;
+                background: rgba(182, 155, 114, 0.10);
+                width: clamp(48px, 4vw, 64px);
+                height: clamp(48px, 4vw, 64px);
+                box-sizing: content-box;
+            }
+
+            h1 {
+                color: #383C45;
+                font-family: $fontSecundary;
+                font-size: clamp(18px, 1.6vw, 24px);
+                font-style: normal;
+                font-weight: 600;
+                line-height: 1.2;
+                margin: 0;
+                text-align: center;
+            }
+
+            .listaServicos {
+                display: flex;
+                flex-direction: column;
+                gap: clamp(8px, 0.9vw, 12px);
+                align-items: flex-start;
+                justify-content: center;
+                margin: 0;
+                padding-left: 20px;
+                width: 100%;
+
+                li {
+                    color: #666;
+                    font-family: $fontPrimary;
+                    font-size: clamp(12px, 0.95vw, 14px);
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 1.4;
+
+                    &::marker {
+                        color: #B69B72;
+                    }
+                }
+            }
+        }
+
+        /* ===== DESKTOP: cards entram em cascata quando o container aparece ===== */
+        @media (min-width: 1025px) {
+            &.visible .cardServicos {
+                &:nth-child(1) { transition-delay: 0.15s; }
+                &:nth-child(2) { transition-delay: 0.3s; }
+                &:nth-child(3) { transition-delay: 0.45s; }
+            }
+        }
+    }
+
+    /* ===== ANIMAÇÃO CTA ===== */
+    .containerCta {
+        position: relative;
+        z-index: 1;
+
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        button, a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            gap: 6px;
+            border-radius: 8px;
+            background: #B69B72;
+            border: none;
+            padding: clamp(12px, 1.2vw, 16px) clamp(16px, 1.8vw, 24px);
+            color: #FFF;
+            font-family: $fontPrimary;
+            font-size: clamp(13px, 0.95vw, 14px);
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+                opacity: 0.9;
+                transform: scale(1.03);
+            }
+
+            &::before {
+                content: '';
+                background-repeat: no-repeat;
+                display: block;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M5.925 15C7.35643 15.7343 9.00306 15.9332 10.5682 15.5609C12.1333 15.1885 13.5139 14.2694 14.4613 12.9692C15.4087 11.6689 15.8606 10.0731 15.7354 8.46916C15.6103 6.86524 14.9164 5.35876 13.7789 4.22118C12.6413 3.0836 11.1348 2.38972 9.53088 2.2646C7.92697 2.13947 6.3311 2.59132 5.03086 3.53872C3.73063 4.48612 2.81152 5.86677 2.43917 7.43187C2.06682 8.99697 2.26571 10.6436 3 12.075L1.5 16.5L5.925 15Z' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    /* ===== Mobile (até 1024px) ===== */
+    @media (max-width: 1024px) {
+        gap: 40px;
+
+        /* SVG superior — canto direito do topo */
+        &::before {
+            left: auto;
+            right: 0;
+            top: 0;
+            width: 55vw;
+            height: 40vh;
+            max-height: 320px;
+            background-size: contain;
+            background-position: top right;
+            transform: scaleX(-1);
+            opacity: 0.6;
+        }
+
+        /* SVG inferior — canto esquerdo do fundo */
+        &::after {
+            right: auto;
+            left: 0;
+            top: auto;
+            bottom: 0;
+            width: 55vw;
+            height: 40vh;
+            max-height: 320px;
+            background-size: contain;
+            background-position: bottom left;
+            transform: scaleX(-1);
+            opacity: 0.6;
+        }
+
+        .containerCards {
+            grid-template-columns: 1fr;
+             max-width: 100%;
+            gap: 20px;
+
+            .cardServicos {
+                padding: 28px 24px;
+                box-sizing: border-box;
+                gap: 14px;
+
+                img {
+                    width: 44px;
+                    height: 44px;
+                    padding: 14px;
+                }
+
+                h1 {
+                    font-size: 22px;
+                }
+
+                .listaServicos {
+                    align-items: center;
+                    padding-left: 0;
+                    list-style-position: inside;
+
+                    li {
+                        font-size: 14px;
+                        text-align: center;
+
+                        &::marker {
+                            color: #B69B72;
+                        }
+                    }
+                }
+            }
+        }
+
+        .containerCta {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .containerCta button, .containerCta a {
+            width: 100%;
+            max-width: 320px;
+            padding: 14px 20px;
+            font-size: 14px;
+            box-sizing: border-box;
+            text-align: center;
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
+
+    /* ===== Mobile pequeno (até 480px) ===== */
+    @media (max-width: 480px) {
+        gap: 32px;
+
+        &::before,
+        &::after {
+            width: 65vw;
+            height: 30vh;
+            max-height: 240px;
+            opacity: 0.5;
+        }
+
+        .containerHeadeServicos h1 {
+            font-size: 28px;
+        }
+
+        .containerCards {
+            max-width: 100%;
+
+            .cardServicos {
+                padding: 24px 18px;
+                width: auto;
+
+                h1 {
+                    font-size: 20px;
+                }
+
+                .listaServicos li {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    /* Respeita preferência por menos animações */
+    @media (prefers-reduced-motion: reduce) {
+        .containerHeadeServicos,
+        .containerCards .cardServicos,
+        .containerCta {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+}
